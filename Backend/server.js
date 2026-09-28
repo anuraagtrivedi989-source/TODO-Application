@@ -112,11 +112,11 @@ app.get("/tasks/:id", async(req, res)=>{
 
 app.put("/tasks/:id", async(req, res)=>{
     try{
-        const id = Number(req.params.id)
+        // const id = Number(req.params.id)
        
 
-        const updatedTask= await Task.findByIdAndUpdate(
-            req.params.id,
+        const updatedTask= await Task.findOneAndUpdate(
+            {_id:req.params.id},
             req.body,
             {returnDocument:"after"}
         )
@@ -142,13 +142,13 @@ app.put("/tasks/:id", async(req, res)=>{
 // to update the task
 app.patch("tasks/:id",  async(req, res)=>{
     try{
-        const id = Number(req.params.id)
+        // const id = Number(req.params.id)
 
         const updatedTask = await Task.findOneAndUpdate(
-            {id:id},
+            {_id:req.params.id},
             req.body,
             {new :true}
-        )
+        );
 
         if(!updatedTask){
             return res.status(404).json({
@@ -161,7 +161,7 @@ app.patch("tasks/:id",  async(req, res)=>{
         res.status(200).json({
             success:true,
             data:updatedTask
-        })
+        });
     }catch(error){
         res.status(500).json({
             message:"server error"
