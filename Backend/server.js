@@ -20,7 +20,7 @@ DbConnection()
 app.use(express.json())
 
 
-app.use("/api/tasks", taskRoutes)
+app.use("api/tasks", taskRoutes)
 
 
 
