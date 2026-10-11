@@ -6,7 +6,12 @@ const cors = require("cors")
 
 const app = express();
 
-app.use(cors({ origin: "http://localhost:5173" }))
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    process.env.CLIENT_URL
+  ].filter(Boolean)
+}));
 
 const dotenv = require("dotenv")
 dotenv.config();
