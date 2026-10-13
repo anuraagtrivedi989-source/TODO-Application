@@ -16,7 +16,7 @@ const TodoItem = ({todo}) => {
     }
   return (
     <div
-    className={`flex border vorder-black/10 rounded-lg px-3 py-1.5 gap-x-3 sg=hadow shadow-white/50 duration:300
+    className={`flex border vorder-black/10 rounded-lg px-3 py-1.5 gap-x-3 sg=hadow shadow-white/50 duration:100
       text-black ${
         todo.completed?"bg-[#123456]":"bg-[#245671]"
       }  `

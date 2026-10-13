@@ -1,9 +1,9 @@
 import './App.css'
 import { TodoProvider, useTodo } from './context/TodoContext'
-import { TodoForm, TodoItem } from './components'
+import { AddedTask, TodoForm } from './components'
 
 function TodoContent() {
-  const { todos, error } = useTodo()
+  const { todos, error, loading } = useTodo()
 
   return (
     <div className="bg-black min-height-screen py-8">
@@ -18,13 +18,7 @@ function TodoContent() {
 
         {error && <p role="alert" className="mb-4 text-red-300">{error}</p>}
 
-        <div className="flex flex-wrap gap-y-6">
-          {todos.map((todo) => (
-            <div key={todo.id} className="w-full">
-              <TodoItem todo={todo} />
-            </div>
-          ))}
-        </div>
+        <AddedTask todos={todos} loading={loading} />
       </div>
     </div>
   )

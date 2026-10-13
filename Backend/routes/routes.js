@@ -55,6 +55,28 @@ router.get("/task",async(req, res)=>{
     }   
 })
 
+// get a single task 
+router.get("/:id", async(req, res)=>{
+    try{
+        const singletask = await Task.findById({_id: req.params.id})
+        if(!singletask){
+           return  res.status(404).json({
+                message:"task not found "
+                
+            })
+        }
+
+        res.status(200).json({
+            message:"task found successfully",
+            data:singletask
+        })
+    }catch(e){
+       return  res.status(500).json({
+            message:"internal server error"
+        })
+    }
+})
+
 // Update 
 router.put("/:id", async(req, res)=>{
     try{

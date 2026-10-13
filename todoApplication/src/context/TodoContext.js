@@ -67,6 +67,19 @@ export function TodoProvider({ children }) {
     }
   }
 
+  async function searchById(id){
+    try{
+      setError("")
+     await searchById(id)
+      setTodos((currenttodos)=>currenttodos.filter((todo)=> todo.id===id))
+      return true;
+    }catch(e){
+      return res.status(404).json({
+        message:"task not found"
+      })
+    }
+  }
+
   const value = {
     todos,
     loading,
@@ -76,6 +89,7 @@ export function TodoProvider({ children }) {
     updateTodo,
     deleteTodo,
     toggleComplete,
+    searchById
   };
 
   return createElement(TodoContext.Provider, { value }, children);

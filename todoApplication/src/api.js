@@ -52,3 +52,13 @@ export async function updateTask(id, updates) {
 export function removeTask(id) {
   return request(`/api/tasks/${id}`, { method: "DELETE" });
 }
+export async function searchById(id){
+  const result = await request(`/api/tasks/${id}`, {
+    method: get,
+    headers:{
+      "content-type": "application/json"
+    },
+    body: JSON.stringify({result})
+  })
+  return normalizeTask(result.data)
+}
